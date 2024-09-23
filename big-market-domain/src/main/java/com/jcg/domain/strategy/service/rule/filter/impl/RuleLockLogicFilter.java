@@ -1,4 +1,4 @@
-package com.jcg.domain.strategy.service.rule.impl;
+package com.jcg.domain.strategy.service.rule.filter.impl;
 
 
 import com.jcg.domain.strategy.model.entity.RuleActionEntity;
@@ -6,8 +6,8 @@ import com.jcg.domain.strategy.model.entity.RuleMatterEntity;
 import com.jcg.domain.strategy.model.valobj.RuleLogicCheckTypeVO;
 import com.jcg.domain.strategy.repository.IStrategyRepository;
 import com.jcg.domain.strategy.service.annotation.LogicStrategy;
-import com.jcg.domain.strategy.service.rule.ILogicFilter;
-import com.jcg.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import com.jcg.domain.strategy.service.rule.filter.ILogicFilter;
+import com.jcg.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
