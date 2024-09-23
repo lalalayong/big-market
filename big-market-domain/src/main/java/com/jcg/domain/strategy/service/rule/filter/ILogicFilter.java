@@ -1,4 +1,4 @@
-package com.jcg.domain.strategy.service.rule;
+package com.jcg.domain.strategy.service.rule.filter;
 
 
 import com.jcg.domain.strategy.model.entity.RuleActionEntity;
