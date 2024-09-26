@@ -101,6 +101,21 @@ public interface IRedisService {
     void remove(String key);
 
     /**
+     * 设置值
+     *
+     * @param key   key 键
+     * @param value 值
+     */
+    void setAtomicLong(String key, long value);
+
+    /**
+     * 获取值
+     *
+     * @param key   key 键
+     */
+    Long getAtomicLong(String key);
+
+    /**
      * 判断指定 key 的值是否存在
      *
      * @param key 键
@@ -245,4 +260,5 @@ public interface IRedisService {
      */
     <T> RBloomFilter<T> getBloomFilter(String key);
 
+    Boolean setNx(String lockKey);
 }
