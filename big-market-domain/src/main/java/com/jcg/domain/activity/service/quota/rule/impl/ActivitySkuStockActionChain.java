@@ -1,4 +1,4 @@
-package com.jcg.domain.activity.service.rule.impl;
+package com.jcg.domain.activity.service.quota.rule.impl;
 
 
 import com.jcg.domain.activity.model.entity.ActivityCountEntity;
@@ -7,7 +7,7 @@ import com.jcg.domain.activity.model.entity.ActivitySkuEntity;
 import com.jcg.domain.activity.model.valobj.ActivitySkuStockKeyVO;
 import com.jcg.domain.activity.repository.IActivityRepository;
 import com.jcg.domain.activity.service.armory.IActivityDispatch;
-import com.jcg.domain.activity.service.rule.AbstractActionChain;
+import com.jcg.domain.activity.service.quota.rule.AbstractActionChain;
 import com.jcg.types.enums.ResponseCode;
 import com.jcg.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
