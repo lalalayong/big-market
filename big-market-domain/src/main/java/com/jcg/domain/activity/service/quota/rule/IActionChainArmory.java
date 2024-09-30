@@ -1,4 +1,4 @@
-package com.jcg.domain.activity.service.rule;
+package com.jcg.domain.activity.service.quota.rule;
 
 /**
  * @description
