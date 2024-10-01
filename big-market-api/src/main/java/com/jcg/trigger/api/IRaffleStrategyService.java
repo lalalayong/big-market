@@ -3,8 +3,8 @@ package com.jcg.trigger.api;
 
 import com.jcg.trigger.api.dto.RaffleAwardListRequestDTO;
 import com.jcg.trigger.api.dto.RaffleAwardListResponseDTO;
-import com.jcg.trigger.api.dto.RaffleRequestDTO;
-import com.jcg.trigger.api.dto.RaffleResponseDTO;
+import com.jcg.trigger.api.dto.RaffleStrategyRequestDTO;
+import com.jcg.trigger.api.dto.RaffleStrategyResponseDTO;
 import com.jcg.types.model.Response;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @description 抽奖服务接口
  */
-public interface IRaffleService {
+public interface IRaffleStrategyService {
 
     /**
      * 策略装配接口
@@ -36,6 +36,6 @@ public interface IRaffleService {
      * @param requestDTO 请求参数
      * @return 抽奖结果
      */
-    Response<RaffleResponseDTO> randomRaffle(RaffleRequestDTO requestDTO);
+    Response<RaffleStrategyResponseDTO> randomRaffle(RaffleStrategyRequestDTO requestDTO);
 
 }
