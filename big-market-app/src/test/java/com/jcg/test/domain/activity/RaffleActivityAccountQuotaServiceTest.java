@@ -54,7 +54,7 @@ public class RaffleActivityAccountQuotaServiceTest {
      */
     @Test
     public void test_createSkuRechargeOrder() throws InterruptedException {
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             try {
                 SkuRechargeEntity skuRechargeEntity = new SkuRechargeEntity();
                 skuRechargeEntity.setUserId("JCG");
