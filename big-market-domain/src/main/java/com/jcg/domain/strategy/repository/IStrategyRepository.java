@@ -8,6 +8,7 @@ import com.jcg.domain.strategy.model.valobj.RuleTreeVO;
 import com.jcg.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import com.jcg.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -59,6 +60,15 @@ public interface IStrategyRepository {
      * @return 扣减结果
      */
     Boolean subtractionAwardStock(String cacheKey);
+
+    /**
+     * 缓存key，decr 方式扣减库存
+     *
+     * @param cacheKey 缓存Key
+     * @param endDateTime 活动结束时间
+     * @return 扣减结果
+     */
+    Boolean subtractionAwardStock(String cacheKey, Date endDateTime);
 
     /**
      * 写入奖品库存消费队列
