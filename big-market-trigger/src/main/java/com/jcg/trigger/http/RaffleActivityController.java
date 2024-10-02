@@ -51,7 +51,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      * @return 装配结果
      * <p>
      * 接口：<a href="http://localhost:8091/api/v1/raffle/activity/armory">/api/v1/raffle/activity/armory</a>
-     * 入参：{"activityId":100001,"userId":"JCG"}
+     * 入参：{"activityId":100301,"userId":"JCG"}
      *
      * curl --request GET \
      *   --url 'http://localhost:8091/api/v1/raffle/activity/armory?activityId=100301'
@@ -88,7 +88,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      * @return 抽奖结果
      * <p>
      * 接口：<a href="http://localhost:8091/api/v1/raffle/activity/draw">/api/v1/raffle/activity/draw</a>
-     * 入参：{"activityId":100001,"userId":"JCG"}
+     * 入参：{"activityId":100301,"userId":"JCG"}
      *
      * curl --request POST \
      *   --url http://localhost:8091/api/v1/raffle/activity/draw \
