@@ -7,6 +7,7 @@ import com.jcg.trigger.api.dto.ActivityDrawRequestDTO;
 import com.jcg.trigger.api.dto.ActivityDrawResponseDTO;
 import com.jcg.types.model.Response;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +26,7 @@ public class RaffleActivityControllerTest {
     @Resource
     private IRaffleActivityService raffleActivityService;
 
-    @Test
+    @Before
     public void test_armory() {
         Response<Boolean> response = raffleActivityService.armory(100301L);
         log.info("测试结果：{}", JSON.toJSONString(response));
