@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.annotation.Resource;
 
@@ -50,7 +49,7 @@ public class LogicChainTest {
     @Test
     public void test_LogicChain_rule_weight() {
         // 通过反射 mock 规则中的值
-        ReflectionTestUtils.setField(ruleWeightLogicChain, "userScore", 4900L);
+//        ReflectionTestUtils.setField(ruleWeightLogicChain, "userScore", 4900L);
 
         ILogicChain logicChain = defaultChainFactory.openLogicChain(100001L);
         DefaultChainFactory.StrategyAwardVO strategyAwardVO = logicChain.logic("JCG", 100001L);
