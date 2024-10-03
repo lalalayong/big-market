@@ -1,6 +1,7 @@
 package com.jcg.domain.award.repository;
 
 
+import com.jcg.domain.award.model.aggregate.GiveOutPrizesAggregate;
 import com.jcg.domain.award.model.aggregate.UserAwardRecordAggregate;
 
 /**
@@ -9,5 +10,11 @@ import com.jcg.domain.award.model.aggregate.UserAwardRecordAggregate;
 public interface IAwardRepository {
 
     void saveUserAwardRecord(UserAwardRecordAggregate userAwardRecordAggregate);
+
+    String queryAwardConfig(Integer awardId);
+
+    void saveGiveOutPrizesAggregate(GiveOutPrizesAggregate giveOutPrizesAggregate);
+
+    String queryAwardKey(Integer awardId);
 
 }
