@@ -79,7 +79,7 @@ public class RaffleStrategyController implements IRaffleStrategyService {
      * <a href="http://localhost:8091/api/v1/raffle/query_raffle_award_list">/api/v1/raffle/query_raffle_award_list</a>
      * 请求参数 raw json
      *
-     * @param requestDTO {"activityId":100301,"userId":"JCG"}
+     * @param request {"activityId":100301,"userId":"JCG"}
      * @return 奖品列表
      */
     @RequestMapping(value = "query_raffle_award_list", method = RequestMethod.POST)
