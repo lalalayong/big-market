@@ -9,7 +9,7 @@ import com.jcg.domain.credit.model.entity.TradeEntity;
 public interface ICreditAdjustService {
 
     /**
-     * 创建增加积分额度订单
+     * 创建积分额度调整订单
      * @param tradeEntity 交易实体对象
      * @return 单号
      */
