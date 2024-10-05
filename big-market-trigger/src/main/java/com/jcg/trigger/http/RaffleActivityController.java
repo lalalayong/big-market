@@ -26,6 +26,7 @@ import com.jcg.domain.strategy.service.IRaffleStrategy;
 import com.jcg.domain.strategy.service.armory.IStrategyArmory;
 import com.jcg.trigger.api.IRaffleActivityService;
 import com.jcg.trigger.api.dto.*;
+import com.jcg.types.annotations.DCCValue;
 import com.jcg.types.enums.ResponseCode;
 import com.jcg.types.exception.AppException;
 import com.jcg.types.model.Response;
@@ -72,6 +73,10 @@ public class RaffleActivityController implements IRaffleActivityService {
     private IRaffleActivitySkuProductService raffleActivitySkuProductService;
     @Resource
     private ICreditAdjustService creditAdjustService;
+
+    // dcc 统一配置中心动态配置降级开关
+    @DCCValue("degradeSwitch:open")
+    private String degradeSwitch;
 
     /**
      * 活动装配 - 数据预热 | 把活动配置的对应的 sku 一起装配
@@ -132,6 +137,13 @@ public class RaffleActivityController implements IRaffleActivityService {
     public Response<ActivityDrawResponseDTO> draw(@RequestBody ActivityDrawRequestDTO request) {
         try {
             log.info("活动抽奖开始 userId:{} activityId:{}", request.getUserId(), request.getActivityId());
+            if (!"open".equals(degradeSwitch)) {
+                return Response.<ActivityDrawResponseDTO>builder()
+                        .code(ResponseCode.DEGRADE_SWITCH.getCode())
+                        .info(ResponseCode.DEGRADE_SWITCH.getInfo())
+                        .build();
+            }
+
             // 1. 参数校验
             if (StringUtils.isBlank(request.getUserId()) || null == request.getActivityId()) {
                 throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
