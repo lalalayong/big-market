@@ -27,12 +27,9 @@ import com.jcg.domain.strategy.service.armory.IStrategyArmory;
 import com.jcg.trigger.api.IRaffleActivityService;
 import com.jcg.trigger.api.dto.*;
 import com.jcg.types.annotations.DCCValue;
-import com.jcg.types.annotations.RateLimiterAccessInterceptor;
 import com.jcg.types.enums.ResponseCode;
 import com.jcg.types.exception.AppException;
 import com.jcg.types.model.Response;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -143,11 +140,11 @@ public class RaffleActivityController implements IRaffleActivityService {
      *      * blacklistCount：超过多少次都被限制了，还访问的，扔到黑名单里24小时
      *
      */
-    @RateLimiterAccessInterceptor(key = "userId", fallbackMethod = "drawRateLimiterError", permitsPerSecond = 1.0d, blacklistCount = 1)
-    @HystrixCommand(commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "150")
-    }, fallbackMethod = "drawHystrixError"
-    )
+//    @RateLimiterAccessInterceptor(key = "userId", fallbackMethod = "drawRateLimiterError", permitsPerSecond = 1.0d, blacklistCount = 1)
+//    @HystrixCommand(commandProperties = {
+//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "150")
+//    }, fallbackMethod = "drawHystrixError"
+//    )
     @RequestMapping(value = "draw", method = RequestMethod.POST)
     @Override
     public Response<ActivityDrawResponseDTO> draw(@RequestBody ActivityDrawRequestDTO request) {
