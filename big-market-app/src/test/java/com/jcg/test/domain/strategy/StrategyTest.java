@@ -2,7 +2,7 @@ package com.jcg.test.domain.strategy;
 
 import com.jcg.domain.strategy.service.armory.IStrategyArmory;
 import com.jcg.domain.strategy.service.armory.IStrategyDispatch;
-import com.jcg.infrastructure.persistent.redis.IRedisService;
+import com.jcg.infrastructure.redis.IRedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;

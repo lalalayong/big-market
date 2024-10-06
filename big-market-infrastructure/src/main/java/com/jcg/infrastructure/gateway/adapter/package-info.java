@@ -1,1 +1,0 @@
-package com.jcg.infrastructure.gateway.adapter;
