@@ -33,7 +33,13 @@ public interface IActivityRepository {
 
     ActivitySkuStockKeyVO takeQueueValue();
 
+    ActivitySkuStockKeyVO takeQueueValue(Long sku);
+
     void clearQueueValue();
+
+    void clearQueueValue(Long sku);
+
+    List<Long> querySkuList();
 
     void updateActivitySkuStock(Long sku);
 

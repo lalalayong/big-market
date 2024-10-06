@@ -2,6 +2,7 @@ package com.jcg.domain.strategy.service;
 
 
 import com.jcg.domain.strategy.model.entity.StrategyAwardEntity;
+import com.jcg.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 
 import java.util.List;
 
@@ -26,5 +27,10 @@ public interface IRaffleAward {
      */
     List<StrategyAwardEntity> queryRaffleStrategyAwardListByActivityId(Long activityId);
 
-
+    /**
+     * 查询有效活动的奖品配置
+     *
+     * @return 奖品配置列表
+     */
+    List<StrategyAwardStockKeyVO> queryOpenActivityStrategyAwardList();
 }
