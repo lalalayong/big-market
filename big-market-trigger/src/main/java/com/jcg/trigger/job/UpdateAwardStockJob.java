@@ -3,13 +3,16 @@ package com.jcg.trigger.job;
 import com.jcg.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 import com.jcg.domain.strategy.service.IRaffleAward;
 import com.jcg.domain.strategy.service.IRaffleStock;
+import com.xxl.job.core.handler.annotation.XxlJob;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @description 更新奖品库存任务；为了不让更新库存的压力打到数据库中，这里采用了redis更新缓存库存，异步队列更新数据库，数据库表最终一致即可。
@@ -25,9 +28,23 @@ public class UpdateAwardStockJob {
     @Resource
     private ThreadPoolExecutor executor;
 
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Resource
+    private RedissonClient redissonClient;
+
+    /**
+     * 本地化任务注解；@Scheduled(cron = "0/5 * * * * ?")
+     * 分布式任务注解； @XxlJob("updateAwardStockJob")
+     */
+    @XxlJob("updateAwardStockJob")
     public void exec() {
+        // 为什么加锁？分布式应用N台机器部署互备，任务调度会有N个同时执行，那么这里需要增加抢占机制，谁抢占到谁就执行。完毕后，下一轮继续抢占。
+        RLock lock = redissonClient.getLock("big-market-updateAwardStockJob");
+        boolean isLocked = false;
         try {
+//            log.info("定时任务，更新奖品库存");
+            isLocked = lock.tryLock(3, 0, TimeUnit.SECONDS);
+            if (!isLocked) return;
+
             List<StrategyAwardStockKeyVO> strategyAwardStockKeyVOS = raffleAward.queryOpenActivityStrategyAwardList();
             if (null == strategyAwardStockKeyVOS) return;
             for (StrategyAwardStockKeyVO strategyAwardStockKeyVO : strategyAwardStockKeyVOS) {
@@ -44,7 +61,12 @@ public class UpdateAwardStockJob {
             }
         } catch (Exception e) {
             log.error("定时任务，更新奖品消耗库存失败", e);
+        } finally {
+            if (isLocked) {
+                lock.unlock();
+            }
         }
     }
+
 
 }
