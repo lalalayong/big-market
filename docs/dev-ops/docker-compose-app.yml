@@ -2,7 +2,7 @@ version: '3.8'
 # 命令执行 docker-compose -f docker-compose-app.yml up -d
 services:
   big-market-app-01:
-    image: jcglalalayong/big-market-app:4.0
+    image: jcglalalayong/big-market-app:4.1
     container_name: big-market-app-01
     ports:
       - "8091:8091"
@@ -28,7 +28,7 @@ services:
         max-size: "10m"
         max-file: "3"
   big-market-app-02:
-    image: jcglalalayong/big-market-app:4.0
+    image: jcglalalayong/big-market-app:4.1
     container_name: big-market-app-02
     ports:
       - "8092:8092"
