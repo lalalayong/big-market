@@ -8,7 +8,6 @@ import org.apache.curator.framework.recipes.cache.CuratorCache;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,19 +19,18 @@ import java.util.Map;
  * 基于 Zookeeper 的配置中心实现原理
  */
 @Slf4j
-@Configuration
 public class DCCValueBeanFactory implements BeanPostProcessor {
 
     private static final String BASE_CONFIG_PATH = "/big-market-dcc";
     private static final String BASE_CONFIG_PATH_CONFIG = BASE_CONFIG_PATH + "/config";
 
-    @Autowired(required = false)
     private CuratorFramework client;
 
     private final Map<String, Object> dccObjGroup = new HashMap<>();
 
     public DCCValueBeanFactory(CuratorFramework client) throws Exception {
         if (null == client) return;
+        this.client = client;
 
         // 节点判断
         if (null == client.checkExists().forPath(BASE_CONFIG_PATH_CONFIG)) {

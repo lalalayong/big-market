@@ -36,10 +36,9 @@ public class UpdateActivitySkuStockJob {
     public void exec() {
         // 为什么加锁？分布式应用N台机器部署互备，任务调度会有N个同时执行，那么这里需要增加抢占机制，谁抢占到谁就执行。完毕后，下一轮继续抢占。
         RLock lock = redissonClient.getLock("big-market-UpdateActivitySkuStockJob");
-        boolean isLocked = false;
         try {
 //            log.info("定时任务，更新活动sku库存");
-            isLocked = lock.tryLock(3, 0, TimeUnit.SECONDS);
+            boolean isLocked = lock.tryLock(3, 0, TimeUnit.SECONDS);
             if (!isLocked) return;
 
             List<Long> skus = skuStock.querySkuList();
@@ -59,7 +58,7 @@ public class UpdateActivitySkuStockJob {
         } catch (Exception e) {
             log.error("定时任务，更新活动sku库存失败", e);
         } finally {
-            if (isLocked) {
+            if (lock.isLocked() && lock.isHeldByCurrentThread()) {
                 lock.unlock();
             }
         }
