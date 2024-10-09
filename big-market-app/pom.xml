@@ -139,6 +139,11 @@
             <groupId>com.jcg</groupId>
             <artifactId>big-market-infrastructure</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.jcg</groupId>
+            <artifactId>business-behavior-monitor-sdk</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
